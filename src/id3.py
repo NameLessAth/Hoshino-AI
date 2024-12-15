@@ -1,5 +1,5 @@
 import numpy as np
-import math
+import pickle
 
 class ID3DecisionTree:
     def __init__(self, max_depth=None):
@@ -130,3 +130,18 @@ class ID3DecisionTree:
         #     node = unique[np.argmax(counts)]
         
         return node
+
+    def save(self, filename) -> None:
+        try:
+            with open(filename, "wb") as filenya:
+                pickle.dump(self, filenya)
+        except Exception as err:
+            print(err)
+    
+    @classmethod
+    def load(cls, filename):
+        try:
+            with open(filename, "rb") as filenya:
+                return (pickle.load(filenya))
+        except Exception as err:
+            print(err)

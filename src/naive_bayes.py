@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 
 class NaiveBayes:
     def __init__(self):
@@ -60,3 +61,18 @@ class NaiveBayes:
         for titik in x_pred_list:
             hasilnya.append(self.predict_point(titik))
         return np.array(hasilnya)
+    
+    def save(self, filename) -> None:
+        try:
+            with open(filename, "wb") as filenya:
+                pickle.dump(self, filenya)
+        except Exception as err:
+            print(err)
+    
+    @classmethod
+    def load(cls, filename):
+        try:
+            with open(filename, "rb") as filenya:
+                return (pickle.load(filenya))
+        except Exception as err:
+            print(err)
