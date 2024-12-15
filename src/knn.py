@@ -1,4 +1,5 @@
 from statistics import mode
+import numpy as np
 
 class KNearestNeighbors:
     def __init__(self, jumlah_neighbor:int = 5, r:int = 2) -> None:
@@ -21,9 +22,6 @@ class KNearestNeighbors:
         return (jaraknya**(1/self.r))
  
     def fit(self, x_train:list[list[int]], y_train:list[list[int]]) -> None:
-        """
-        fungsi untuk melatih mesin dengan data
-        """
         self.data_x.extend(x_train)
         self.data_y.extend(y_train)
 
@@ -37,16 +35,17 @@ class KNearestNeighbors:
             while(not dimasukin and i < len(list_jarak)):
                 if list_jarak[i] > jaraknya:
                     list_jarak.insert(i, jaraknya)
-                    list_hasil.insert(i, self.data_y[i])
+                    list_hasil.insert(i, tuple(self.data_y[i]))
                     dimasukin = True
                 i+=1
             if not dimasukin:
                 list_jarak.append(jaraknya)
-                list_hasil.append(self.data_y[i])
-        return mode(list_hasil[:(self.jumlah_neighbor)])
+                list_hasil.append(tuple(self.data_y[i]))
+        toberet = mode(list_hasil[:(self.jumlah_neighbor)])
+        return np.array(toberet)
 
     def predict(self, x_pred_list:list[list[int]]) -> list[list[int]]:
         hasilnya = []
         for titik in x_pred_list:
             hasilnya.append(self.predict_point(titik))
-        return hasilnya
+        return np.array(hasilnya)
