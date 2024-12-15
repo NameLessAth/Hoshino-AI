@@ -8,10 +8,15 @@ Repository ini berisi implementasi beberapa algoritma machine learning (K-Neares
 Jalankan file ipynb dengan perintah run all (di UI). 
 
 ## Pembagian tugas
-13522010 Naive Bayes
-13522044 KNN
-13522059 Preprocessing
-13522065 ID3
+NIM       | Tugas
+----------| -------------
+13522010  | Naive Bayes
+13522044  | KNN
+13522059  | Preprocessing
+13522065  | ID3
+
+ 
+ 
 
 
 
